@@ -1,11 +1,11 @@
-- name: Check filesystem disk usage
+- name: Check filesystem usage
   hosts: all
   become: true
   tasks:
-    - name: Check disk usage
+    - name: Run df -h to check disk usage
       command: df -h
-      register: disk_usage
+      register: disk_output
 
     - name: Print disk usage output
       debug:
-        var: disk_usage.stdout_lines
+        msg: "{{ disk_output.stdout_lines }}"
